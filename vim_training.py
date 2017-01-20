@@ -19,7 +19,7 @@ def main():
 
     proc = subprocess.Popen(VIM_BIN)
     print "PID:", proc.pid
-    #print "Return code:", proc.wait()
+    # print "Return code:", proc.wait()
     time.sleep(TIMER)
 
     os.kill(proc.pid, signal.SIGTERM)
