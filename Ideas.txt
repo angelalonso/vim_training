@@ -1,0 +1,5 @@
+- Vimperator
+- upper and lower case practices
+- indent
+- change word, surround word
+- copy and paste from/to clipboard
