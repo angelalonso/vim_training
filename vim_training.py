@@ -1,4 +1,6 @@
 #!/usr/bin/env python
+# -*- coding:utf-8 -*-
+
 """
 Controls all parts involved on the VIM Training
 """
