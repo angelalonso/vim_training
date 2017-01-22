@@ -5,11 +5,11 @@
 Controls all parts involved on the VIM Training
 """
 
+import ConfigParser
 import os
 import signal
 import subprocess
 import sys
-import time
 from PyQt4 import QtGui
 import qt_windows
 
@@ -33,12 +33,23 @@ def process_controller(binary, timer):
 
     os.kill(proc.pid, signal.SIGTERM)
 
-if __name__ == "__main__":
-    VIM_BIN = "/usr/bin/vim"
-    TIMER = 6
 
+def load_config(configfile):
+    config = ConfigParser.RawConfigParser()
+    config.read(configfile)
+    return config
+
+
+if __name__ == "__main__":
+    cfg = load_config("./vim_training.cfg")
+    vim_binary = cfg.get('main', 'vim_path')
+    timer = cfg.get('main', 'default_max_countdown')
+    print timer
+
+    # TODO:
+    # SOLVE ERROR: timer int or str
     # TODO:
     # If no configuration or parameter "-config":
     #   Show configuration main screen, take vars from there
 
-    process_controller(VIM_BIN, TIMER)
+    process_controller(vim_binary, timer)
