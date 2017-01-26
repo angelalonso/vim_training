@@ -41,9 +41,9 @@ def load_config(configfile):
 
 
 if __name__ == "__main__":
-    cfg = load_config("./vim_training.cfg")
+    cfg = load_config("./user.cfg")
     vim_binary = cfg.get('main', 'vim_path')
-    timer = cfg.get('main', 'default_max_countdown')
+    timer = int(cfg.get('main', 'default_max_countdown'))
     print timer
 
     # TODO:

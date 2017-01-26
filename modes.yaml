@@ -1,0 +1,15 @@
+- mode:
+  - level:
+    - 001:
+      file: "A"
+      time: 100
+    - 002:
+      file: "B"
+      time: 90
+  - warmup:
+    - 001:
+      file: "warmup"
+      time: 150
+
+
+
