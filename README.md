@@ -11,4 +11,6 @@ A VIM warmup and training tool, written in python + qt
 - Python script that controls the settings and the tools
   - Tools in mind: timer, performance checker
 
+## REQUIREMENTS
 
+pip install PyYAML

@@ -51,8 +51,35 @@ class CounterWindow(QtGui.QWidget):
             self.close()
 
 
+class ConfigWindow(QtGui.QWidget):
+    """
+    window class for configuration
+    """
+    def __init__(self, modesMap, parent=None):
+        QtGui.QWidget.__init__(self, parent)
+
+        modes = []
+
+        self.resize(400, 300)
+        self.move(100, 100)
+
+        self.gridLayout = QtGui.QGridLayout()
+
+        self.modeCombo = QtGui.QComboBox()
+        self.modeCombo.clear()
+        for entry in modesMap['mode']:
+            for key in entry:
+                modes.append(key)
+        self.modeCombo.addItems(modes)
+
+        self.gridLayout.addWidget(self.modeCombo, 1, 1, 1, 1)
+        self.setLayout(self.gridLayout)
+
+
 if __name__ == "__main__":
     app = QtGui.QApplication(sys.argv)
     mainwin = CounterWindow(5)
     mainwin.show()
+    configwin = ConfigWindow()
+    configwin.show()
     sys.exit(app.exec_())
