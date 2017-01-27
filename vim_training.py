@@ -34,7 +34,8 @@ def process_controller(binary, timer):
     Main function
     """
 
-    proc = subprocess.Popen(binary)
+    commnd = str(binary) + " -O ./LEVELS/TO_DO_list.txt ./LEVELS/Warmup.txt"
+    proc = subprocess.Popen(commnd, shell=True)
     print "PID:", proc.pid
     # print "Return code:", proc.wait()
     timer_controller(timer)
