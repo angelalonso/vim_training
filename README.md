@@ -13,4 +13,4 @@ A VIM warmup and training tool, written in python + qt
 
 ## REQUIREMENTS
 
-pip install PyYAML
+pip install PyYAML psutil

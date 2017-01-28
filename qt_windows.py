@@ -49,6 +49,7 @@ class CounterWindow(QtGui.QWidget):
         if self.init == 0:
             self.timer.stop()
             self.close()
+            return
 
 
 class ConfigWindow(QtGui.QWidget):

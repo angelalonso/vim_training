@@ -7,9 +7,11 @@ Controls all parts involved on the VIM Training
 
 import ConfigParser
 import os
+import psutil
 import signal
 import subprocess
 import sys
+import time
 from PyQt4 import QtGui
 import qt_windows
 import yaml
@@ -34,13 +36,22 @@ def process_controller(binary, timer):
     Main function
     """
 
-    commnd = str(binary) + " -O ./LEVELS/TO_DO_list.txt ./LEVELS/Warmup.txt"
-    proc = subprocess.Popen(commnd, shell=True)
-    print "PID:", proc.pid
-    # print "Return code:", proc.wait()
-    timer_controller(timer)
+    # command = str(binary) + " -O ./LEVELS/TO_DO_list.txt ./LEVELS/Warmup.txt"
+    command = '/usr/bin/terminator -m -e "/usr/bin/vim -O \
+            ./LEVELS/Warmup.txt ./LEVELS/TO_DO_list.txt"'
+    proc = subprocess.Popen(command, shell=True)
 
-    os.kill(proc.pid, signal.SIGTERM)
+    # TODO: when this is enabled, the program is unable to kill the vim process
+    # (or do anything else at all)
+    # timer_controller(timer)
+    time.sleep(timer)
+
+    # somehow os.kill does not...well, kill it
+    for child in psutil.Process(proc.pid).children():
+        os.kill(child.pid, signal.SIGKILL)
+
+    os.kill(proc.pid, signal.SIGKILL)
+    print ("Your time is over!")
 
 
 def load_config(configfile):
@@ -62,9 +73,7 @@ if __name__ == "__main__":
     # If no configuration or parameter "-config":
     #   Show configuration main screen, take vars from there
 
-    #config_controller(modesMap)
+    # config_controller(modesMap)
     # both at the same time wont work
     # TODO: call it from the config one?
     process_controller(vim_binary, timer)
-
-
