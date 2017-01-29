@@ -1,0 +1,43 @@
+# Tips
+
+- Add current date
+http://vim.wikia.com/wiki/Insert_current_date_or_time
+:pu=strftime('%F')
+
+- Capitalize first letter of each word in a selection
+http://stackoverflow.com/questions/17440659/capitalize-first-letter-of-each-word-in-a-selection-using-vim#17440797
+:s/\<./\u&/g
+
+- change case of current char
+~
+
+- change whole line case
+http://vim.wikia.com/wiki/Switching_case_of_characters
+ - lower case
+guu
+ - higher case
+gUU
+
+- clear search highlight
+:noh
+
+- swap chars and words
+http://vim.wikia.com/wiki/Swapping_characters,_words_and_lines
+ - this char with next one
+xp
+ - this word with next one
+ MUST be at First char offirst word
+ hdeep
+
+- create 15 increments of current line
+http://vim.1045645.n5.nabble.com/paste-and-increment-a-number-td4461193.html
+qqyyp<CTRL>+Aq15@q
+
+- add to the beggining of sveral lines
+<CTRL>+v
+ - select first column of all lines wanted
+I (that's <shitf>+i)
+add text, press <ESC>
+
+- Save and quit all windows open
+:wqa

@@ -7,14 +7,15 @@ Controls all parts involved on the VIM Training
 
 import ConfigParser
 import os
-import psutil
 import signal
 import subprocess
 import sys
 import time
+import shutil
+import psutil
 from PyQt4 import QtGui
-import qt_windows
 import yaml
+import qt_windows
 
 
 def timer_controller(timer):
@@ -37,8 +38,11 @@ def process_controller(binary, timer):
     """
 
     # command = str(binary) + " -O ./LEVELS/TO_DO_list.txt ./LEVELS/Warmup.txt"
+    shutil.copyfile('./LEVELS/TO_DO_list.orig.txt', './LEVELS/TO_DO_list.txt')
     command = '/usr/bin/terminator -m -e "/usr/bin/vim -O \
-            ./LEVELS/Warmup.txt ./LEVELS/TO_DO_list.txt"'
+            ./LEVELS/TO_DO_list.txt \
+            ./LEVELS/TO_DO_list.goal.txt \
+            ./LEVELS/TO_DO_list.tips.txt"'
     proc = subprocess.Popen(command, shell=True)
 
     # TODO: when this is enabled, the program is unable to kill the vim process
@@ -51,6 +55,11 @@ def process_controller(binary, timer):
         os.kill(child.pid, signal.SIGKILL)
 
     os.kill(proc.pid, signal.SIGKILL)
+    # TODO:
+    # - Save current work before killing
+    # - Diff work and goal
+    # - remove any .swp leftovers
+    os.remove('./LEVELS/.TO_DO_list.txt.swp')
     print ("Your time is over!")
 
 
